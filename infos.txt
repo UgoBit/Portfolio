@@ -1,0 +1,6 @@
+background-color body : #0E0E0E
+background-color clair : #171718 
+font body : #DDDDDD (blanc), Noto Sans JP
+font : #9634F1 (violet)
+color button : #4F0099
+police titre : Oswald
