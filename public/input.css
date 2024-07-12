@@ -1,0 +1,232 @@
+/* Polices */
+@font-face {
+  font-family: "TheMunday";
+  src: url("./assets/fonts/Themundayfreeversion-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Archivo";
+  src: url("./assets/fonts/Archivo-VariableFont_wdth-wght.ttf");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Définition des variables */
+@layer base {
+  :root {
+    --title-color: #e5ebff;
+    --text-color: #b5bac9;
+  }
+
+  .element::-webkit-scrollbar { width: 0 !important }
+  .element {
+    -ms-overflow-style: none;
+  }
+  .element {
+    overflow: -moz-scrollbars-none;
+  }
+
+  html,
+  a {
+    /* cursor: none; */
+  }
+
+  @keyframes noise {
+    0% {
+      background-position: 0 0;
+    }
+    25% {
+      background-position: 50px 0;
+    }
+    50% {
+      background-position: 50px 50px;
+    }
+    75% {
+      background-position: 0 50px;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  body {
+    background-color: #000000;
+    background-image: url(./assets/noise.png);
+    background-size: 50px 50px;
+    animation: noise 0.2s steps(10) infinite;
+  }
+
+  /* LOADER */
+  /* Loader styles */
+  #loader {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+  }
+
+  #loader.fade-out {
+    opacity: 0;
+  }
+
+  /* Main content styles */
+  #main-content,
+  .global-header,
+  .global-footer {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+
+  #main-content.fade-in,
+  .global-header.fade-in,
+  .global-footer.fade-in {
+    opacity: 1;
+  }
+
+  /* Marges spécifiques pour la page d'accueil */
+  .page-accueil #main-content {
+    @apply mt-36 mx-14 md:mx-24;
+  }
+
+  /* Marges par défaut pour les autres pages */
+  .page-autres #main-content {
+    @apply mt-24 mx-14 md:mx-24;
+  }
+
+  /* PAGES ANIMATION */
+  /* Animation pour glisser vers la gauche */
+  .slide-out-left {
+    animation: slideOutLeft 0.5s forwards;
+  }
+  .slide-in-right {
+    animation: slideInRight 0.5s forwards;
+  }
+  @keyframes slideOutLeft {
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Animation pour glisser vers la droite */
+  .slide-out-right {
+    animation: slideOutRight 0.5s forwards;
+  }
+  .slide-in-left {
+    animation: slideInLeft 0.5s forwards;
+  }
+  @keyframes slideOutRight {
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Appliquer ces animations aux éléments que vous souhaitez animer */
+  .page-transition-out {
+    animation: slideOutLeft 0.5s ease forwards;
+  }
+
+  .page-transition-in {
+    animation: slideInRight 0.5s ease forwards;
+  }
+
+  /* CURSEUR */
+  .custom-cursor {
+    @apply fixed w-10 h-10 border-2 border-white rounded-full pointer-events-none;
+    transform: translate(-50%, -50%);
+    transition: left 0.1s ease-out, top 0.1s ease-out, opacity 0.2s ease-out,
+      transform 0.3s ease;
+    opacity: 0;
+    z-index: 1000;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-dot {
+    @apply fixed w-1 h-1 bg-white rounded-full pointer-events-none;
+    transition: left 0.05s ease-out, top 0.05s ease-out, opacity 0.2s ease-out,
+      transform 0.3s ease;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 1000;
+    mix-blend-mode: difference;
+  }
+
+  .hover-target {
+    @apply cursor-none;
+  }
+
+  /* PROJETS */
+  .projets {
+    @apply relative w-72 md:w-96 min-h-11 h-fit px-3 py-2.5 bg-black flex items-center justify-between border-solid border-2 border-white text-sm md:text-base shadow hover:shadow-custom-white ease-out duration-300;
+  }
+
+  /* ETUDES */
+  .etudes-heading {
+    @apply text-4xl mb-2;
+  }
+
+  .etudes-container {
+    @apply flex flex-col gap-1 mb-4 font-archivo tracking-widest text-sm;
+  }
+
+  .etudes-diplome {
+    @apply text-skin-primary font-bold;
+  }
+
+  .etudes-niveau {
+    @apply text-skin-secondary;
+  }
+
+  .etudes-dates {
+    @apply text-skin-secondary italic;
+  }
+
+  /* RESEAUX SOCIAUX */
+  .link-item {
+    @apply relative inline-block;
+  }
+
+  .link-item::after {
+    content: "";
+    @apply absolute w-full h-0.5 left-0 -bottom-0.5 bg-white border-solid border-white scale-x-0 origin-left transition-transform duration-300 ease-out;
+  }
+
+  .link-item:hover::after {
+    @apply scale-x-100;
+  }
+
+  .link-item:hover::after {
+    @apply scale-x-100;
+  }
+}
