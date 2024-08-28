@@ -20,17 +20,21 @@
     --text-color: #b5bac9;
   }
 
-  .element::-webkit-scrollbar { width: 0 !important }
-  .element {
-    -ms-overflow-style: none;
+  * {
+    box-sizing: border-box;
+  } 
+
+  html {
+    scrollbar-width: none;
   }
-  .element {
-    overflow: -moz-scrollbars-none;
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   html,
   a {
-    /* cursor: none; */
+    cursor: none;
   }
 
   @keyframes noise {
@@ -93,14 +97,25 @@
     opacity: 1;
   }
 
+  .global-footer.hidden {
+    opacity: 0; /* Lorsque caché */
+}
+
+  .global-header {
+    @apply right-4 top-8 absolute flex flex-col items-center font-archivo font-bold text-skin-primary text-xs;
+  }
+  .global-footer {
+    @apply bottom-6 left-1/2 fixed transform -translate-x-1/2 flex flex-row items-center font-archivo font-bold text-skin-primary text-xs;
+  }
+
   /* Marges spécifiques pour la page d'accueil */
   .page-accueil #main-content {
-    @apply mt-36 mx-14 md:mx-24;
+    @apply mt-28 mx-8 md:mx-24;
   }
 
   /* Marges par défaut pour les autres pages */
   .page-autres #main-content {
-    @apply mt-24 mx-14 md:mx-24;
+    @apply mt-10 mx-8 mb-16 md:mx-24;
   }
 
   /* PAGES ANIMATION */
@@ -182,6 +197,12 @@
     mix-blend-mode: difference;
   }
 
+  /* Styles pour cacher le curseur personnalisé sur les appareils tactiles */
+  .touch-device .custom-cursor,
+  .touch-device .cursor-dot {
+    display: none;
+  }
+
   .hover-target {
     @apply cursor-none;
   }
@@ -214,7 +235,7 @@
 
   /* RESEAUX SOCIAUX */
   .link-item {
-    @apply relative inline-block;
+    @apply hover-target relative inline-block;
   }
 
   .link-item::after {

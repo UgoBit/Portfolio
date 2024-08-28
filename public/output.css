@@ -463,33 +463,21 @@ video {
   --text-color: #b5bac9;
 }
 
-.\!element::-webkit-scrollbar {
-  width: 0 !important
+* {
+  box-sizing: border-box;
 }
 
-.element::-webkit-scrollbar {
-  width: 0 !important
+html {
+  scrollbar-width: none;
 }
 
-.\!element {
-  -ms-overflow-style: none !important;
-}
-
-.element {
-  -ms-overflow-style: none;
-}
-
-.\!element {
-  overflow: -moz-scrollbars-none !important;
-}
-
-.element {
-  overflow: -moz-scrollbars-none;
+html::-webkit-scrollbar {
+  display: none;
 }
 
 html,
   a {
-  /* cursor: none; */
+  cursor: none;
 }
 
 @keyframes noise {
@@ -559,12 +547,47 @@ body {
   opacity: 1;
 }
 
+.global-footer.hidden {
+  opacity: 0;
+  /* Lorsque caché */
+}
+
+.global-header {
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Archivo, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  color: var(--title-color);
+}
+
+.global-footer {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  display: flex;
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  flex-direction: row;
+  align-items: center;
+  font-family: Archivo, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  color: var(--title-color);
+}
+
 /* Marges spécifiques pour la page d'accueil */
 
 .page-accueil #main-content {
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
-  margin-top: 9rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 7rem;
 }
 
 @media (min-width: 768px) {
@@ -577,9 +600,10 @@ body {
 /* Marges par défaut pour les autres pages */
 
 .page-autres #main-content {
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
-  margin-top: 6rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 4rem;
 }
 
 @media (min-width: 768px) {
@@ -686,6 +710,13 @@ body {
   mix-blend-mode: difference;
 }
 
+/* Styles pour cacher le curseur personnalisé sur les appareils tactiles */
+
+.touch-device .custom-cursor,
+  .touch-device .cursor-dot {
+  display: none;
+}
+
 .hover-target {
   cursor: none;
 }
@@ -770,6 +801,7 @@ body {
 /* RESEAUX SOCIAUX */
 
 .link-item {
+  cursor: none;
   position: relative;
   display: inline-block;
 }
@@ -1041,24 +1073,8 @@ body {
   inset: -0.25rem;
 }
 
-.bottom-6 {
-  bottom: 1.5rem;
-}
-
 .end-1 {
   inset-inline-end: 0.25rem;
-}
-
-.left-1\/2 {
-  left: 50%;
-}
-
-.right-4 {
-  right: 1rem;
-}
-
-.top-12 {
-  top: 3rem;
 }
 
 .isolate {
@@ -1113,11 +1129,6 @@ body {
   clear: none;
 }
 
-.mx-14 {
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
-}
-
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -1150,10 +1161,6 @@ body {
 
 .mt-10 {
   margin-top: 2.5rem;
-}
-
-.mt-16 {
-  margin-top: 4rem;
 }
 
 .mt-2 {
@@ -1295,12 +1302,12 @@ body {
   width: 0.125rem;
 }
 
-.w-4\/5 {
-  width: 80%;
+.w-4 {
+  width: 1rem;
 }
 
-.w-8 {
-  width: 2rem;
+.w-4\/5 {
+  width: 80%;
 }
 
 .w-\[this-is\\\\\] {
@@ -1358,11 +1365,6 @@ body {
 
 .border-separate {
   border-collapse: separate;
-}
-
-.-translate-x-1\/2 {
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .rotate-\[270deg\] {
@@ -2509,11 +2511,6 @@ body {
   line-height: 1.25rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .font-bold {
   font-weight: 700;
 }
@@ -3055,11 +3052,6 @@ body {
           background-clip: text;
 }
 
-.\*\:text-6xl > * {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
 .\*\:leading-relaxed > * {
   line-height: 1.625;
 }
@@ -3116,6 +3108,21 @@ body {
 @media (min-width: 640px) {
   .sm\:underline {
     text-decoration-line: underline;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:w-8 {
+    width: 2rem;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .\*\:md\:leading-relaxed > * {
+    line-height: 1.625;
   }
 }
 
